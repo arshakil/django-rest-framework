@@ -1,0 +1,41 @@
+1.Use the following command at your system's command prompt to install the postgresql package:
+$sudo apt-get install postgresql
+
+2.The default superuser for PostgreSQL is called postgres. You may need to login as this user first.
+$sudo su postgres
+
+3.Now create PostgreSQL user openerp using the following command: db_user--> openerp (you can change it)
+$createuser openerp
+4.You can find the table template1, run the following command to use this table:
+$psql template1
+5.To apply access rights to the role openerp for the database which will be created from OpenERP Client, use the following command:db_password--> postgres(you can change it)
+$alter role openerp with password 'postgres';
+
+6. Give All pemission (openerp is your db name) exit from postgres then type this cmd
+$sudo -u postgres psql -c 'alter user openerp with createdb' postgres
+
+7. Drop User
+postgres=# DROP USER odoo11;
+
+########## check odoo#######
+xmlrpc_port = 8070
+$ps aux | grep odoo
+$kill -9 13476
+
+
+
+1. --->sudo apt-get install postgresql
+2. --->sudo su postgres
+3. --->createuser odoo11
+4. --->psql template1
+5. --->alter role odoo11 with password '123456';
+6. --->\q
+7. --->exit
+8. --->sudo -u postgres psql -c 'alter user odoo11 with createdb' postgres
+
+
+### Optional ##
+9.postgres=# DROP USER odoo11;
+
+# To Learn More
+1. https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e
