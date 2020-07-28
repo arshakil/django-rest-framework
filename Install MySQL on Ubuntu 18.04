@@ -1,0 +1,54 @@
+Install MySQL on Ubuntu 18.04
+
+step 1:  Install   
+
+	$ sudo apt update
+	$ sudo apt install mysql-server
+	$ sudo mysql_secure_installation
+
+Step 2: Adjusting User Authentication and Privileges
+
+	$ sudo mysql
+	$ mysql> SELECT user,authentication_string,plugin,host FROM mysql.user; # checking user
+	$ mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '100%secure';
+	$ mysql> FLUSH PRIVILEGES;
+	$ mysql> SELECT user,authentication_string,plugin,host FROM mysql.user; # checking user
+	$ mysql> exit
+
+Step 3: For creating new user
+
+	$ mysql -u root -p   			# we are using root because it has password=root
+	$ mysql> CREATE USER 'test_user' IDENTIFIED BY 'shakil363410'; # creating new user and pass
+	$ mysql> GRANT ALL PRIVILEGES ON *.* TO 'test_user' WITH GRANT OPTION;
+	$ mysql> exit
+
+step 4: Create Database
+# now give the user name that you are ceated not root user, test_user is new user
+
+	$ mysql -u test_user -p  
+	$ mysql> CREATE DATABASE test_db;
+	$ mysql> exit
+
+step 5(Optional): Check status of mysql
+	$ sudo systemctl status mysql
+### check MySQL version::
+	$ mysql -u root -p (need Root password)
+	$ mysql> SHOW VARIABLES LIKE "%version%";
+
+#### To learn more :
+1. https://www.inmotionhosting.com/support/website/how-to-create-a-database-using-mysql-from-the-command-line/
+2. https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04
+3. https://linuxize.com/post/how-to-install-mysql-on-ubuntu-18-04/
+
+
+
+#################### Install and Use MySQL Workbench on Ubuntu 18.04
+
+step 1: Installing MySQL Workbench on Ubuntu
+	$ sudo apt update  		#(Optional)
+	$ sudo apt install mysql-workbench
+Step 2: Launching MySQL Workbench
+	$ MySQL Workbench
+
+#### To learn more :
+1. https://linuxize.com/post/how-to-install-and-use-mysql-workbench-on-ubuntu-18-04/
