@@ -1,0 +1,31 @@
+1.## Installing Process
+https://www.linuxhelp.com/how-to-install-xampp-7-2-4-on-ubuntu-18-04
+
+2.## Fixd error , More details: 
+https://www.youtube.com/watch?v=EsfE1_jDc6o
+
+Open the terminal and write the command
+$--> sudo su
+$-->  cd /opt/lampp   Or cd /opt/lamp
+$-->  ./manager-linux-x64.run
+
+Stop All Server likes Apache Web Server, MySQL Database
+To solve Apache Server Running Problem Open the terminal and write the command
+
+$-->   sudo apachectl stop
+
+and click start button again.
+
+To Solve MYSQL Database Running Problem 
+Open the terminal and write the command
+
+
+$-->  sudo service mysql stop
+
+and click start button again.
+
+
+3.## After installing 
+$-->  sudo su
+$-->  cd /opt/lampp
+$-->  ./manager-linux-x64.run
