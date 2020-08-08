@@ -38,9 +38,15 @@ step 5(Optional): Check status of mysql
 	$ sudo systemctl status mysql
 	
 ### check MySQL Database Name::
+	$ sudo su
 	$ mysql -u root -p (need Root password, password is: 100%secure)
 	$ SHOW DATABASES;
+### check MySQL User List::
+	$ sudo su
+	$ mysql -u root -p (need Root password, password is: 100%secure)
+	$ SELECT user FROM mysql.user;	
 ### check MySQL version::
+	$ sudo su
 	$ mysql -u root -p (need Root password,  password is: 100%secure)
 	$ mysql> SHOW VARIABLES LIKE "%version%"
 
