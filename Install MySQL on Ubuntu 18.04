@@ -22,7 +22,7 @@ Step 2: Adjusting User Authentication and Privileges
 
 Step 3: For creating new user
 
-	$ mysql -u root -p   			# we are using root because it has password=root
+	$ mysql -u root -p   			# we are using root, it has been created above. it has password=100%secure
 	$ mysql> CREATE USER 'test_user' IDENTIFIED BY 'shakil363410'; # creating new user and pass
 	$ mysql> GRANT ALL PRIVILEGES ON *.* TO 'test_user' WITH GRANT OPTION;
 	$ mysql> exit
