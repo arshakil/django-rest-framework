@@ -36,9 +36,14 @@ step 4: Create Database
 
 step 5(Optional): Check status of mysql
 	$ sudo systemctl status mysql
+	
+### check MySQL Database Name::
+	$ mysql -u root -p (need Root password, password is: 100%secure)
+	$ SHOW DATABASES;
 ### check MySQL version::
-	$ mysql -u root -p (need Root password)
-	$ mysql> SHOW VARIABLES LIKE "%version%";
+	$ mysql -u root -p (need Root password,  password is: 100%secure)
+	$ mysql> SHOW VARIABLES LIKE "%version%"
+
 
 #### To learn more :
 1. https://www.inmotionhosting.com/support/website/how-to-create-a-database-using-mysql-from-the-command-line/
