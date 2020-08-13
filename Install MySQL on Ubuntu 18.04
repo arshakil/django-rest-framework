@@ -34,6 +34,7 @@ step 4: Create Database
 	$ mysql> CREATE DATABASE test_db;
 	$ mysql> exit
 
+############################################################################################################################################
 step 5(Optional): Check status of mysql
 	$ sudo systemctl status mysql
 	
@@ -49,7 +50,14 @@ step 5(Optional): Check status of mysql
 	$ sudo su
 	$ mysql -u root -p (need Root password,  password is: 100%secure)
 	$ mysql> SHOW VARIABLES LIKE "%version%"
-
+	
+### Upload Data from SQL file::
+	$ sudo su
+	$ mysql -u test_user -p     #(need test_user password,  password is: shakil363410)
+	$ mysql>> SET FOREIGN_KEY_CHECKS = 0;
+	$ mysql>> FLUSH PRIVILEGES;
+	$ mysql>> use test_db;    #(in which db? data are going to be upload)
+	$ mysql>> source /home/shakil/Downloads/sql_v2_final_deploy(1).sql   (file direcotory name where our sql file is available and # sql_v2_final_deploy(1).sql  is file name)
 
 #### To learn more :
 1. https://www.inmotionhosting.com/support/website/how-to-create-a-database-using-mysql-from-the-command-line/
