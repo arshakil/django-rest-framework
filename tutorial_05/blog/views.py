@@ -80,9 +80,17 @@ class PostList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-
+        
+#     perform_create(self, serializer) - Called by CreateModelMixin when saving a new object instance.
+#     perform_update(self, serializer) - Called by UpdateModelMixin when saving an existing object instance.
+#     perform_destroy(self, instance) - Called by DestroyModelMixin when deleting an object instance.
 
     queryset = Post.objects.all()
+    
+#     def get_queryset(self):
+#         """Returns Polls that belong to the current user"""
+#         return Poll.active.filter(user=self.request.user).order_by('-pub_date')[:5]
+    
     serializer_class = PostSerializer
 
     # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
