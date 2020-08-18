@@ -1,4 +1,9 @@
-Install MySQL on Ubuntu 18.04
+Install MySQL on Ubuntu 18.04, mysqlclient==2.0.1, PyMySQL==0.10.0
+
+	$ sudo apt-get install python-dev python3-dev
+	$ sudo apt-get install libmysqlclient-dev
+	$ pip install pymysql
+	$ pip install mysqlclient
 
 step 1:  Install   
 
@@ -17,9 +22,9 @@ Step 2: Adjusting User Authentication and Privileges
 
 Step 3: For creating new user
 
-	$ mysql -u root -p   			# we are using root because it has password=root
-	$ mysql> CREATE USER 'test_user' IDENTIFIED BY 'shakil363410'; # creating new user and pass
-	$ mysql> GRANT ALL PRIVILEGES ON *.* TO 'test_user' WITH GRANT OPTION;
+	$ mysql -u root -p   			# we are using root, it has been created above. it has password=100%secure
+	$ mysql> CREATE USER 'test_user' IDENTIFIED BY 'shakil363410'; # creating new user and pass, MySQL ERROR 1819 (HY000):follow this link:  shorturl.at/jERU9
+	$ mysql> grant all privileges on *.* to 'test_user';
 	$ mysql> exit
 
 step 4: Create Database
@@ -29,11 +34,30 @@ step 4: Create Database
 	$ mysql> CREATE DATABASE test_db;
 	$ mysql> exit
 
+############################################################################################################################################
 step 5(Optional): Check status of mysql
 	$ sudo systemctl status mysql
+	
+### check MySQL Database Name::
+	$ sudo su
+	$ mysql -u root -p (need Root password, password is: 100%secure)
+	$ SHOW DATABASES;
+### check MySQL User List::
+	$ sudo su
+	$ mysql -u root -p (need Root password, password is: 100%secure)
+	$ SELECT user FROM mysql.user;	
 ### check MySQL version::
-	$ mysql -u root -p (need Root password)
-	$ mysql> SHOW VARIABLES LIKE "%version%";
+	$ sudo su
+	$ mysql -u root -p (need Root password,  password is: 100%secure)
+	$ mysql> SHOW VARIABLES LIKE "%version%"
+	
+### Upload Data from SQL file::
+	$ sudo su
+	$ mysql -u test_user -p     #(need test_user password,  password is: shakil363410)
+	$ mysql>> SET FOREIGN_KEY_CHECKS = 0;
+	$ mysql>> FLUSH PRIVILEGES;
+	$ mysql>> use test_db;    #(in which db? data are going to be upload)
+	$ mysql>> source /home/shakil/Downloads/sql_v2_final_deploy(1).sql   (file direcotory name where our sql file is available and # sql_v2_final_deploy(1).sql  is file name)
 
 #### To learn more :
 1. https://www.inmotionhosting.com/support/website/how-to-create-a-database-using-mysql-from-the-command-line/
