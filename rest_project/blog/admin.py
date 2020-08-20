@@ -4,13 +4,13 @@ from django.contrib import admin
 
 
 from .models import User
-from . models import Post, Category, UserProfile
+from . models import Post, Category, UserProfile, Region, Continent
 
 # Register your models here.
 
 admin.site.register(Post)
 admin.site.register(Category)
-admin.site.register(UserProfile)
+# admin.site.register(UserProfile)
 
 # class UserAdmin(admin.UserAdmin):
 class UserAdmin(admin.ModelAdmin):
@@ -24,3 +24,11 @@ class UserAdmin(admin.ModelAdmin):
 	fieldsets = ()
 
 admin.site.register(User, UserAdmin)
+
+class UserProfileAdmin(admin.ModelAdmin):
+	list_display = ('id',)
+admin.site.register(UserProfile, UserProfileAdmin)
+
+# region and continent
+admin.site.register(Region)
+admin.site.register(Continent)

@@ -129,3 +129,36 @@ def update_user_profile(sender, instance, created, **kwargs):
 # 	if created:
 # 		UserProfile.objects.create(user=instance)
 # signals.post_save.connect(create_user_profile, sender=User, weak=False)
+
+
+
+# Continent and region
+class Continent(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+    show = models.BooleanField(default=True)
+    changed_by = models.IntegerField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'continent'
+
+class Region(models.Model):
+    name = models.CharField(max_length=255,unique=True)
+    description = models.CharField(max_length=255, null=True)
+    continent = models.ForeignKey(Continent, on_delete=models.CASCADE)
+    show = models.BooleanField(default=True)
+    changed_by = models.IntegerField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'regions'
+        ordering = ['name']
