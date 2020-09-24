@@ -1,0 +1,42 @@
+
+
+Django provides the function get_random_string() which will satisfy the alphanumeric string generation requirement. You don't need any extra package because it's in the django.utils.crypto module.
+
+>>> from django.utils.crypto import get_random_string
+>>> unique_id = get_random_string(length=32)
+>>> unique_id
+u'rRXVe68NO7m3mHoBS488KdHaqQPD6Ofv'
+
+You can also vary the set of characters with allowed_chars:
+
+>>> short_genome = get_random_string(length=32, allowed_chars='ACTG')
+>>> short_genome
+u'CCCAAAAGTACGTCCGGCATTTGTCCACCCCT'
+
+There are many other ways to generate a unique id, though not necessarily an alphanumeric one:
+
+    The uuid module - generate a unique UUID using uuid1 or uuid4, e.g.
+
+    >>> import uuid
+    >>> my_uuid = uuid.uuid4()
+    >>> my_uuid
+    UUID('8e6eee95-eae1-4fb4-a436-27f68dbcb6d7')
+    >>> str(my_uuid)
+    '8e6eee95-eae1-4fb4-a436-27f68dbcb6d7'
+
+    The random module:
+
+    >>> import random
+    >>> import string
+    >>> allowed_chars = ''.join((string.ascii_letters, string.digits))
+    >>> unique_id = ''.join(random.choice(allowed_chars) for _ in range(32))
+    >>> unique_id
+    '121CyaSHHzX8cqbgLnIg1C5qNrnv21uo'
+
+Or, if you're not fussy about the alphabet:
+
+>>> unique_id = '%32x' % random.getrandbits(16*8)
+>>> unique_id
+'5133d2d79ce518113474d8e9f3702638'
+
+
