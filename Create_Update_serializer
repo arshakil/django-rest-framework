@@ -1,0 +1,53 @@
+
+### model.py
+class Invoice(models.Model):
+    nr = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+
+class InvoiceItem(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.FloatField()
+    invoice = models.ForeignKey(Invoice, related_name='items')
+
+
+### serializer.py
+
+class InvoiceItemSerializer(serializers.ModelSerializer):
+    invoice = serializers.PrimaryKeyRelatedField(queryset=Invoice.objects.all(), required=False)
+    class Meta:
+        model = InvoiceItem
+
+
+class InvoiceSerializer(serializers.ModelSerializer):
+    items = InvoiceItemSerializer(many=True)
+
+    class Meta:
+        model = Invoice
+
+# For creating
+    def create(self, validated_data):
+        items = validated_data.pop('items', None)
+        invoice = Invoice(**validated_data)
+        invoice.save()
+        for item in items:
+            InvoiceItem.objects.create(invoice=invoice, **item)
+        return invoice
+
+# For Updating
+
+	def update(self, instance, validated_data):
+	    instance.nr = validated_data.get('nr', instance.nr)
+	    instance.title = validated_data.get('title', instance.title)
+	    instance.save()
+
+
+	    items = validated_data.get('items')
+	    for item in items:
+		inv_item = InvoiceItem.objects.get(invoice=instance, pk=item.pk)
+		inv_item.name = item.get('name', inv_item.name)
+		inv_item.price = item.get('price', inv_item.price)
+		inv_item.invoice = instance
+		inv_item.save()
+
+	    instance.save()
+	    return instance
