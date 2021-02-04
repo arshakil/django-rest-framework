@@ -1,0 +1,13 @@
+
+
+
+## You want to clear all the migration history but you want to keep the existing database. # For More info--> shorturl.at/ijqzR
+1. python manage.py makemigrations
+2. python manage.py showmigrations (Optional)
+3. python manage.py migrate --fake core zero
+4. python manage.py showmigrations (Optional)
+5. find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+   find . -path "*/migrations/*.pyc"  -delete
+6. python manage.py showmigrations (Optional)
+7. python manage.py makemigrations
+8. python manage.py migrate --fake-initial
